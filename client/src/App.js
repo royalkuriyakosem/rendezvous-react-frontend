@@ -6,6 +6,18 @@ import Home from './pages/Home';
 import Events from './pages/Events';
 import Services from './pages/Services';
 import About from './pages/About';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import CreateEvent from './pages/CreateEvent';
+import AddService from './pages/AddService';
+import EventDetails from './pages/EventDetails';
+import ServiceDetails from './pages/ServiceDetails';
+import ServiceCategory from './pages/ServiceCategory';
+import Contact from './pages/Contact';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import NotFound from './pages/NotFound';
 import './App.css';
 
 function App() {
@@ -19,20 +31,18 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
-            {/* Placeholder routes for future implementation */}
-            <Route path="/login" element={<div className="placeholder-page">Login Page - Coming Soon</div>} />
-            <Route path="/register" element={<div className="placeholder-page">Register Page - Coming Soon</div>} />
-            <Route path="/dashboard" element={<div className="placeholder-page">Dashboard - Coming Soon</div>} />
-            <Route path="/create-event" element={<div className="placeholder-page">Create Event - Coming Soon</div>} />
-            <Route path="/add-service" element={<div className="placeholder-page">Add Service - Coming Soon</div>} />
-            <Route path="/events/:id" element={<div className="placeholder-page">Event Details - Coming Soon</div>} />
-            <Route path="/services/:id" element={<div className="placeholder-page">Service Details - Coming Soon</div>} />
-            <Route path="/services/:category" element={<div className="placeholder-page">Service Category - Coming Soon</div>} />
-            <Route path="/contact" element={<div className="placeholder-page">Contact - Coming Soon</div>} />
-            <Route path="/privacy" element={<div className="placeholder-page">Privacy Policy - Coming Soon</div>} />
-            <Route path="/terms" element={<div className="placeholder-page">Terms of Service - Coming Soon</div>} />
-            {/* 404 Route */}
-            <Route path="*" element={<div className="placeholder-page">404 - Page Not Found</div>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/create-event" element={<CreateEvent />} />
+            <Route path="/add-service" element={<AddService />} />
+            <Route path="/events/:id" element={<EventDetails />} />
+            <Route path="/services/:id" element={<ServiceDetails />} />
+            <Route path="/services/:category" element={<ServiceCategory />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />
@@ -42,4 +52,3 @@ function App() {
 }
 
 export default App;
-
