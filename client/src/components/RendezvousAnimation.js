@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Text3D, Html } from "@react-three/drei";
+import { Canvas, useFrame, useThree, useLoader } from "@react-three/fiber";
+import { Text3D, Html, OrbitControls } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
 import * as THREE from "three";
+import { TextureLoader } from "three";
 import fontJson from "../assets/fonts/helvetiker_bold.typeface.json"; // Adjust path as necessary
 import './RendezvousAnimation.css';
 
@@ -31,6 +32,18 @@ const createGlassMaterial = () => {
     emissiveIntensity: 0.1,     // Subtle white glow
   });
 };
+
+// 360 Background Component
+function Background360({ imageUrl }) {
+  const texture = useLoader(TextureLoader, imageUrl);
+  
+  return (
+    <mesh>
+      <sphereGeometry args={[500, 60, 40]} />
+      <meshBasicMaterial map={texture} side={THREE.BackSide} />
+    </mesh>
+  );
+}
 
 // Optimized spinning letter component
 function SpinningLetter({ 
@@ -319,6 +332,22 @@ export default function RendezvousAnimation() {
         camera={{ position: [0, 0, 40], fov: 75 }}  // Updated initial camera position
       >
         <CameraController />
+        
+        {/* Add 360 Background - Replace with your actual 360 image path */}
+        <Background360 imageUrl="/assets/images/background.jpg" />
+        
+        {/* Add orbit controls for scrolling/panning */}
+        <OrbitControls 
+          enablePan={true}
+          enableZoom={true}
+          enableRotate={true}
+          zoomSpeed={0.6}
+          panSpeed={0.8}
+          rotateSpeed={0.4}
+          minDistance={20}
+          maxDistance={100}
+          target={[0, 0, 0]}
+        />
         
         {/* Enhanced lighting for white glass effect */}
         <ambientLight intensity={0.6} color="#ffffff" />
