@@ -153,3 +153,91 @@ Built with modern web technologies combining React's component architecture with
 ---
 
 **Made with ❤️ and cutting-edge web technologies**
+
+text
+# 360° Background Integration for Rendezvous Animation
+
+## Overview
+
+This update adds a **360-degree scrollable background image** to the existing spinning letter animation without modifying any of the original functionality. Users can now navigate around a spherical panoramic background while the "RENDEZVOUS" text continues its animations.
+
+## What Was Added
+
+### 🌐 360° Background System
+- **Spherical Background**: Large sphere geometry that encompasses the entire scene
+- **Panoramic Image Support**: Loads and displays equirectangular 360° images
+- **Interactive Navigation**: Mouse/touch controls for exploring the background
+
+### 🎮 Camera Controls
+- **Orbit Controls**: Smooth camera movement around the scene
+- **Zoom Functionality**: Mouse wheel zoom in/out capability
+- **Pan Support**: Right-click drag for camera panning
+
+## Dependencies Required
+
+npm install @react-three/drei
+
+text
+
+> **Note**: If you already have `@react-three/drei` installed, no additional dependencies are needed.
+
+## Technical Implementation
+
+### New Components Added
+
+#### 1. `Background360` Component
+function Background360({ imageUrl }) {
+const texture = useLoader(TextureLoader, imageUrl);
+
+return (
+<mesh>
+<sphereGeometry args={} />
+<meshBasicMaterial map={texture} side={THREE.BackSide} />
+</mesh>
+);
+}
+
+text
+
+**Key Features:**
+- **Large Sphere**: 500-unit radius ensures background encompasses entire scene
+- **Inside-Out Rendering**: `side={THREE.BackSide}` makes texture visible from inside
+- **Optimized Geometry**: 60x40 segments balance quality and performance
+
+#### 2. `OrbitControls` Integration
+<OrbitControls enablePan={true} enableZoom={true} enableRotate={true} zoomSpeed={0.6} panSpeed={0.8} rotateSpeed={0.4} minDistance={20} maxDistance={100} target={} />
+
+text
+
+**Control Settings:**
+- **Zoom Range**: 20-100 units (prevents getting too close or far)
+- **Balanced Speeds**: Optimized for smooth navigation
+- **Scene Center**: Targets the center where letters are positioned
+
+### Updated Imports
+import { useLoader } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import { TextureLoader } from "three";
+
+text
+
+## Usage Instructions
+
+### 1. **Add Your 360° Image**
+Replace this line in the code:
+<Background360 imageUrl="/path/to/your-360-image.jpg" /> ```
+2. Image Requirements
+Format: Equirectangular 360° panoramic image
+
+Aspect Ratio: 2:1 (width:height)
+
+Recommended Size: 4096x2048px or higher for best quality
+
+File Types: JPG, PNG, or other web-compatible formats
+
+3. Navigation Controls
+Action	Control
+Rotate View	Left-click + drag
+Zoom In/Out	Mouse wheel scroll
+Pan Camera	Right-click + drag
+
